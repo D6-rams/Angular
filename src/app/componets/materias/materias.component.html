@@ -1,0 +1,27 @@
+<p>Horario de materias</p>
+<select (change)="getmateria($event)">Lista
+    @for(materia of materias;track materia.id){
+        <option value="{{materia.id}}">{{materia.nombre}}</option>
+    }
+</select>
+
+@if(todalista)
+{
+    <ul>
+        @for(materia of materias; track materia.id){
+            <li>{{materia.nombre}}</li>
+        }
+       
+    </ul>
+
+
+
+}
+<br> <br>
+<div [hidden]="!autenticado">
+    <label for="txtmateria"> Materia:</label>
+    <input type="text" id="txtmateria"[(ngModel)]="texto" />
+    <button type="button" [disabled]="!texto">Agregar</button>
+</div>
+<br> <br>
+<app-materiadetalles [materia]="materiaseleccionada" (notify)="onNotify($event)"></app-materiadetalles>
